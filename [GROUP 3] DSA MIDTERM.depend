@@ -2,3 +2,25 @@
 1664675129 source:c:\users\user\documents\sampoerna university\semester 3\data structure\[group 3] dsa midterm\main.cpp
 	<iostream>
 
+1665026627 source:c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\main.cpp
+	<iostream>
+	<string>
+	<algorithm>
+	"Calculator.h"
+	"utility.h"
+
+1665026756 c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\include\calculator.h
+	<iostream>
+	<vector>
+	<map>
+	<list>
+
+1665026538 source:c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\src\calculator.cpp
+	"Calculator.h"
+
+1664976247 c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\include\utility.h
+	<iostream>
+
+1664976246 source:c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\src\utility.cpp
+	"utility.h"
+

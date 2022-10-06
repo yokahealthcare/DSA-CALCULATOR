@@ -2,21 +2,8 @@
 #include <string>
 #include <algorithm>
 #include "Calculator.h"
+#include "utility.h"
 using namespace std;
-/*
-    UTILITY FUNCTIONS
-    -- Some necessary function to make program functional
-*/
-
-// Returns true if s is a number else false
-bool isNumber(string s)
-{
-    for (int i = 0; i < s.length(); i++)
-        if (isdigit(s[i]) == false)
-            return false;
-
-    return true;
-}
 
 int main()
 {
@@ -58,20 +45,18 @@ int main()
 
                     string val;
                     getline(cin, val);
-                    cal.setStorage(val);
 
                     string tmp = "";
-                    int indexComponent = 0;
                     for(int i = 0; i < val.length(); i++) {
                         if(val[i] != ' ') {
                             // check for operators
                             // TODO : revised... so next it use array of operators. not like this
                             if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/') {
                                 tmp += val[i];
-                                cal.setComponents(tmp, indexComponent);
+                                cal.setComponents(tmp);
+                                cal.addOperators(val[i]); // store the all operators to dictionary
 
                                 tmp = "";
-                                indexComponent++;
                                 continue;
 
                             } else {
@@ -79,14 +64,18 @@ int main()
                                 if (isdigit(val[i+1])) // if next string is integer, continue the loop to next loop immediately
                                     continue;
                                 else {
-                                    cal.setComponents(tmp, indexComponent);
-
+                                    cal.setComponents(tmp);
                                     tmp = "";
-                                    indexComponent++;
                                 }
                             }
                         }
                     }
+
+
+                    // CALCULATION STUFF
+                    // SATU FUNGSI SAKTI
+                    cal.calculate();
+
 
                     // additional menu for the calculator side
                     int tmpInpt;
@@ -94,8 +83,10 @@ int main()
                     cout << "1. Continue" << endl;
                     cout << "2. Back to menu" << endl;
                     cin >> tmpInpt; cin.ignore();
-                    if(tmpInpt == 1)
+                    if(tmpInpt == 1) {
+                        cal.clearComponents();
                         system("cls");
+                    }
                     else if(tmpInpt == 2)
                         quitCal = true;
                 }

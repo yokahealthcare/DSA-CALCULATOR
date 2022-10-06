@@ -2,29 +2,37 @@
 #define CALCULATOR_H
 
 #include <iostream>
+#include <vector>
+#include <map>
+#include <list>
 using namespace std;
 
 class Calculator
 {
     private:
-        string components[100];
-        string storage[10000];
-        int filled = 0;
+        list<string> components;
+        vector<vector<string>> storage;
 
-
+        map<char, int> operators;
     public:
         Calculator();
 
         // COMPONENTS
-        void setComponents(string, int);
-        string getComponents();
+        void setComponents(string);
+        void clearComponents();
         void printComponents();
 
         // STORAGE
-        void setStorage(string);
+        void setStorage(string, int);
         void printStorage();
 
+        // Calculate
+        void calculate();
+        void apex();
 
+        // OTHER
+        void addOperators(char);
+        void printOperators();
 };
 
 #endif // CALCULATOR_H
