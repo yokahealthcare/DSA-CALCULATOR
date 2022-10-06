@@ -23,7 +23,7 @@ int main()
     {
         system("cls"); // clear the screen
         // Print the menus
-        cout << "Scientific Calculator" << endl;
+        cout << "SCIENTIFIC CALCULATOR" << endl;
         cout << "=====================" << endl;
         for(int i=0; i < sizeOfMenus; i++)
             cout << i+1 << " " << menus[i] << endl;
@@ -48,7 +48,8 @@ int main()
 
                     string tmp = "";
                     for(int i = 0; i < val.length(); i++) {
-                        if(val[i] != ' ') {
+
+                        if(!isspace(val[i])) {
                             // check for operators
                             // TODO : revised... so next it use array of operators. not like this
                             if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/') {
@@ -60,6 +61,7 @@ int main()
                                 continue;
 
                             } else {
+
                                 tmp += val[i];
                                 if (isdigit(val[i+1])) // if next string is integer, continue the loop to next loop immediately
                                     continue;
@@ -71,32 +73,63 @@ int main()
                         }
                     }
 
+                    // Check for miss type or human-error
+                    int valid = cal.checkValidity();
+                    if(valid) {
+                        // CALCULATION START HERE
+                        cal.calculate();
 
-                    // CALCULATION STUFF
-                    // SATU FUNGSI SAKTI
-                    cal.calculate();
+                        // additional menu for the calculator side
+                        int tmpInpt;
+                        cout << "\n===================" << endl;
+                        cout << "1. Continue" << endl;
+                        cout << "2. Back to menu" << endl;
+                        cin >> tmpInpt; cin.ignore();
+                        if(tmpInpt == 1)
+                            system("cls");
+                        else if(tmpInpt == 2)
+                            quitCal = true;
+                    } else {
+                        // IF Input is INVALID
+                        cout << "\nYour Input is Invalid!" << endl;
+                        cout << "Please Try Again" << endl;
 
-
-                    // additional menu for the calculator side
-                    int tmpInpt;
-                    cout << "\n===================" << endl;
-                    cout << "1. Continue" << endl;
-                    cout << "2. Back to menu" << endl;
-                    cin >> tmpInpt; cin.ignore();
-                    if(tmpInpt == 1) {
-                        cal.clearComponents();
+                        system("pause");
                         system("cls");
+                        cal.clearComponents();
                     }
-                    else if(tmpInpt == 2)
-                        quitCal = true;
                 }
             }
 
             else if(input == "2")
             {
-                // some functions
-                cal.printStorage();
-                system("pause");
+                bool quitStorage = false;
+                while(!quitStorage) {
+                    // some functions
+                    cal.printStorage();
+                    // check whether storage still empty or not
+                    if(cal.getLengthStorage() > 0) {
+
+                    int tmpInpt;
+                    cout << "\n===================" << endl;
+                    cout << "1. Delete" << endl;
+                    cout << "2. Back to menu" << endl;
+                    cout << ">>> ";
+                    cin >> tmpInpt; cin.ignore();
+                    if(tmpInpt == 1) {
+                        cout << "Which one? " << endl;
+                        cin >> tmpInpt; cin.ignore();
+
+                        cal.removeElementStorage(tmpInpt-1);
+                    }
+
+                    else if(tmpInpt == 2)
+                        quitStorage = true;
+                    } else {
+                        quitStorage = true;
+                        system("pause");
+                    }
+                }
             }
 
             // exit
