@@ -46,12 +46,18 @@ int main()
                     string val;
                     getline(cin, val);
 
+                    // convert all to the lower case
+                    for_each(val.begin(), val.end(), [](char & c) {
+                        c = ::tolower(c);
+                    });
+
                     string tmp = "";
                     for(int i = 0; i < val.length(); i++) {
-
-                        if(!isspace(val[i])) {
+                        if(!isspace(val[i])) { // ignored
+                            int ascii = val[i];
                             // check for operators
                             // TODO : revised... so next it use array of operators. not like this
+                            //cout << "ASCII Index " << i << " : " << ascii << endl;
                             if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/') {
                                 tmp += val[i];
                                 cal.setComponents(tmp);
@@ -60,8 +66,47 @@ int main()
                                 tmp = "";
                                 continue;
 
-                            } else {
+                            } else if((ascii >= 97 && ascii <= 122)){
+                                tmp += val[i];
+                                int next = val[i+1];
+                                if ((next >= 97 && next <= 122) || (next == 40)) { // if next string is string, continue the loop to next loop immediately
 
+                                    // FUNCTION FOR 'FUNCTIONS' DETECTION (ex. LOG, SIN, COS, etc)
+                                    if(next == 40) {
+                                        //cout << "OPEN BRACKET DETECTED!!" << endl;
+                                        int indexBonus = 1;
+                                        string currentCharacter;
+                                        bool existCloseBracket = false;
+                                        while(!existCloseBracket) {
+                                            currentCharacter = val[i+indexBonus];
+                                            if(currentCharacter != ")"){
+                                                if(!isspace(val[i])) {
+                                                    tmp += currentCharacter;
+                                                }
+                                            } else {
+                                                // end of program if it met with ")"
+                                                tmp += currentCharacter;
+
+                                                cal.setComponents(tmp);
+                                                tmp = "";
+
+                                                existCloseBracket = true;
+                                                continue;
+                                            }
+
+                                            indexBonus++;
+                                        }
+
+                                        i += indexBonus;
+                                    }
+                                }
+                                else {
+                                    cout << "\n\nERROR! Spaces are not allowed for functions calculation." << endl;
+                                    cout << "Restart the program!\n\n" << endl;
+                                    exit(0);
+                                }
+
+                            } else {
                                 tmp += val[i];
                                 if (isdigit(val[i+1])) // if next string is integer, continue the loop to next loop immediately
                                     continue;
@@ -73,31 +118,22 @@ int main()
                         }
                     }
 
-                    // Check for miss type or human-error
-                    int valid = cal.checkValidity();
-                    if(valid) {
-                        // CALCULATION START HERE
-                        cal.calculate();
+                    cal.printComponents();
+                    cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
+                    // CALCULATION START HERE
+                    //cal.calculate();
 
-                        // additional menu for the calculator side
-                        int tmpInpt;
-                        cout << "\n===================" << endl;
-                        cout << "1. Continue" << endl;
-                        cout << "2. Back to menu" << endl;
-                        cin >> tmpInpt; cin.ignore();
-                        if(tmpInpt == 1)
-                            system("cls");
-                        else if(tmpInpt == 2)
-                            quitCal = true;
-                    } else {
-                        // IF Input is INVALID
-                        cout << "\nYour Input is Invalid!" << endl;
-                        cout << "Please Try Again" << endl;
-
-                        system("pause");
+                    // additional menu for the calculator side
+                    int tmpInpt;
+                    cout << "\n===================" << endl;
+                    cout << "1. Continue" << endl;
+                    cout << "2. Back to menu" << endl;
+                    cin >> tmpInpt; cin.ignore();
+                    if(tmpInpt == 1)
                         system("cls");
-                        cal.clearComponents();
-                    }
+                    else if(tmpInpt == 2)
+                        quitCal = true;
+
                 }
             }
 

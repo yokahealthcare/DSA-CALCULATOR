@@ -48,7 +48,6 @@ class Calculator
         // OTHER
         void addOperators(char);
         void printOperators();
-        int checkValidity();
 
 };
 

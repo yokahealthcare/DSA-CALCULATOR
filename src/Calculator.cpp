@@ -66,10 +66,6 @@ int Calculator::getLengthStorage() {
 
 
 
-
-
-
-
 // CALCULATOR
 void Calculator::apex(string op, list<string>::iterator it, list<string>::iterator itr1, list<string>::iterator itr2) {
     this->step++;
@@ -224,24 +220,6 @@ void Calculator::printOperators() {
     cout << "* : " << this->operators['*'] << endl;
     cout << "/ : " << this->operators['/'] << endl;
     cout << "\n";
-}
-
-int Calculator::checkValidity() {
-    int valid = 0;
-    for(string y: this->components) {
-        for(string x: this->allowedOperators) {
-            // if it's right
-            if(x == y) {
-                valid++;
-                break;
-            }
-        }
-    }
-
-    if(valid == 0)
-        return 0;
-    else
-        return 1;
 }
 
 
