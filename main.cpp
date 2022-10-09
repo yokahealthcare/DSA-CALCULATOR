@@ -58,7 +58,7 @@ int main()
                             // check for operators
                             // TODO : revised... so next it use array of operators. not like this
                             //cout << "ASCII Index " << i << " : " << ascii << endl;
-                            if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/') {
+                            if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/' || val[i] == '^') {
                                 tmp += val[i];
                                 cal.setComponents(tmp);
                                 cal.addOperators(val[i]); // store the all operators to dictionary
@@ -73,14 +73,17 @@ int main()
 
                                     // FUNCTION FOR 'FUNCTIONS' DETECTION (ex. LOG, SIN, COS, etc)
                                     if(next == 40) {
-                                        //cout << "OPEN BRACKET DETECTED!!" << endl;
+                                        cal.addOperatorsString(tmp); // store the all functions to dictionary
+                                        cout << "OPEN BRACKET DETECTED!!" << endl;
+                                        cout << "TMP : " << tmp << endl;
+
                                         int indexBonus = 1;
                                         string currentCharacter;
                                         bool existCloseBracket = false;
                                         while(!existCloseBracket) {
                                             currentCharacter = val[i+indexBonus];
                                             if(currentCharacter != ")"){
-                                                if(!isspace(val[i])) {
+                                                if(currentCharacter != " ") {
                                                     tmp += currentCharacter;
                                                 }
                                             } else {
@@ -119,9 +122,13 @@ int main()
                     }
 
                     cal.printComponents();
-                    cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
+                    cal.printOperators();
+                    cal.printFunctions();
+
+                    // cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
+                    //cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
                     // CALCULATION START HERE
-                    //cal.calculate();
+                    cal.calculate();
 
                     // additional menu for the calculator side
                     int tmpInpt;

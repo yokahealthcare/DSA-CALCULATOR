@@ -66,7 +66,7 @@ int Calculator::getLengthStorage() {
 
 
 
-// CALCULATOR
+// BASIC OPERATOR CALCULATOR
 void Calculator::apex(string op, list<string>::iterator it, list<string>::iterator itr1, list<string>::iterator itr2) {
     this->step++;
 
@@ -83,13 +83,16 @@ void Calculator::apex(string op, list<string>::iterator it, list<string>::iterat
         result = to_string(first * second); opch = '*';
     } else if(op == "/") {
         result = to_string(first / second); opch = '/';
+    } else if(op == "^") {
+        result = to_string(pow(first, second)); opch = '^';
     }
+
 
     /*
         =======================>
         ADD MORE "ELSE IF" OPERATOR HERE
         IF YOU WANT TO
-        ADD THE NEW OPERATOR
+        ADD THE NEW SINGLE OPERATOR
     */
 
     this->operators[opch]--; // subtract the 'operators' dictionary
@@ -112,8 +115,14 @@ void Calculator::apex(string op, list<string>::iterator it, list<string>::iterat
     this->tmpStorage.push_back(tmp);
 }
 
+void Calculator::advancedApex(string op, list<string>::iterator it) {
+    cout << "ADVANCED APEX is CALLED" << endl;
+}
+
 
 void Calculator::calculate() {
+
+    // TIME
     time_t t; // t passed as argument in function time()
     struct tm * tt; // decalring variable for localtime()
     time (&t); //passing argument to time()
@@ -128,6 +137,7 @@ void Calculator::calculate() {
     // store the notation
     this->tmpStorage.push_back(tmp); // (second time, 0 index)
 
+    // START HERE CALCULATION
     start:
     int index = 0;
     int itr1Index, itr2Index;
@@ -136,7 +146,107 @@ void Calculator::calculate() {
     itr2 = this->components.begin();
 
     for(it = this->components.begin(); it != this->components.end(); ++it) {
-        if(*it == "*" || *it == "/" || *it == "+" || *it == "-") {
+        // Detection
+        bool isFunction = false;
+        bool isOperator = false;
+        bool isNumber = false;
+        string currentComponents = *it;
+        for(int i = 0; i < currentComponents.length(); i++) {
+            int ascii = currentComponents[i];
+
+            if((ascii >= 97 && ascii <= 122)){
+                // If it detect a functions
+                cout << "IsFunction is TRUE NOW!" << "| VAL : " << currentComponents <<endl;
+                isFunction = true;
+                break;
+            } else if(*it == "*" || *it == "/" || *it == "+" || *it == "-" || *it == "^") {
+                // If it detect a operator
+                cout << "IsOperator is TRUE NOW!" << "| VAL : " << currentComponents <<endl;
+                isOperator = true;
+                break;
+            } else {
+                // If it detect a number
+                cout << "IsNumber is TRUE NOW!" << "| VAL : " << currentComponents <<endl;
+                isNumber = true;
+                break;
+            }
+        }
+
+        // input = "+"
+
+        if(isFunction) {
+            string tmp;
+            vector<string> parts;
+            for(int i = 0; i < currentComponents.length(); i++) {
+                if(!isspace(currentComponents[i])) { // ignored space
+                    int ascii = currentComponents[i];
+
+                    cout << "Current Components : " << i << " = " << currentComponents[i] << endl;
+
+                    if((ascii >= 97 && ascii <= 122)){
+                        cout << "ASCII ENTERED! INDEX : " << i << " = " << currentComponents[i] << endl;
+                        tmp += currentComponents[i]; // store the first character of the word
+                        int next = currentComponents[i+1]; // check the next character
+                        if (next == 40){ // if next string is opening brackets
+                            parts.push_back(tmp);
+                            tmp = "";
+                        }
+
+                    } else if((ascii != 40) && (ascii != 41) && (ascii != 44)) { // jsut number are allowed to enter
+                        cout << "NUMBER ENTERED! INDEX : " << i << " = " << currentComponents[i] << endl;
+                        tmp += currentComponents[i];
+                        if (isdigit(currentComponents[i+1])) // if next string is integer, continue the loop to next loop immediately
+                            continue;
+                        else {
+                            parts.push_back(tmp); // insert the numbers
+                            tmp = "";
+                        }
+                    }
+                }
+            }
+
+            cout << "THIS IS PERFECT POINT!" << endl;
+            for(string i: parts)
+                cout << i << endl;
+
+            /*
+                STRUTURE OF 'PARTS' VARIABLE
+                store functions data
+                ==================================>
+
+                VARIABLE NAME   : parts
+                TYPE            : VECTOR ARRAY
+                STRUCTURE       :   [0] : FUNCTION NAME (ex. sin, cos, tan, etc)
+                                    [1] : ARGUMENT 1
+                                    [2] : ARGUMENT 2
+                                    [n] : ARGUMENT n
+            */
+
+            if(*it == "sin" || *it == "cos" || *it == "tan") {
+                while(this->operators['sin'] != 0 || this->operators['cos'] != 0 || this->operators['tan'] != 0) {
+                    if(*it == "sin" || *it == "cos" || *it == "tan") {
+                        if(*it == "sin") {
+                            // SIN
+                            this->advancedApex(*it, it);
+                            goto start; // THIS IS CRITICAL COMMAND. DO NOT DELETE!
+
+                        } else if(*it == "cos") {
+                            // COS
+                            this->advancedApex(*it, it);
+                            goto start; // THIS IS CRITICAL COMMAND. DO NOT DELETE!
+
+                        } else if(*it == "tan") {
+                            // TAN
+                            this->advancedApex(*it, it);
+                            goto start; // THIS IS CRITICAL COMMAND. DO NOT DELETE!
+                        }
+                    }
+                }
+            }
+
+
+
+        } else if(isOperator) {
             // select before & after element from operator position
             itr1Index = index - 1;
             advance(itr1, itr1Index);
@@ -145,6 +255,7 @@ void Calculator::calculate() {
 
 
             /*
+            BASIC SINGLE OPERATOR ONLY
             =======================>
             ADD MORE "IF-ELSE" OPERATOR HERE
             IF YOU WANT TO
@@ -154,7 +265,15 @@ void Calculator::calculate() {
             DOWNNER     ( LOWER PRIORITY )
 
             */
-            if(*it == "*" || *it == "/") {
+            if(*it == "^") {
+                while(this->operators['^'] != 0) {
+                    if(*it == "^") {
+                        // POWER OF
+                        this->apex(*it, it, itr1, itr2);
+                        goto start; // THIS IS CRITICAL COMMAND. DO NOT DELETE!
+                    }
+                }
+            } else if(*it == "*" || *it == "/") {
                 while(this->operators['*'] != 0 || this->operators['/'] != 0) {
                     if(*it == "*" || *it == "/") {
                         if(*it == "*") {
@@ -189,7 +308,8 @@ void Calculator::calculate() {
                 }
             }
         }
-        // Increase Index
+        // Increase Index (this is just for the +, -, *, / operators
+        // pin point to detect where are we?
         index++;
 
         // Reset the iterator
@@ -213,15 +333,27 @@ void Calculator::addOperators(char val) {
     this->operators[val]++;
 }
 
+void Calculator::addOperatorsString(string val) {
+    this->functions[val]++;
+}
+
 void Calculator::printOperators() {
     cout << "\n\n";
     cout << "+ : " << this->operators['+'] << endl;
     cout << "- : " << this->operators['-'] << endl;
     cout << "* : " << this->operators['*'] << endl;
     cout << "/ : " << this->operators['/'] << endl;
+    cout << "^ : " << this->operators['^'] << endl;
     cout << "\n";
 }
 
+void Calculator::printFunctions() {
+    cout << "\n\n";
+    cout << "sin : " << this->functions["sin"] << endl;
+    cout << "cos : " << this->functions["cos"] << endl;
+    cout << "tan : " << this->functions["tan"] << endl;
+    cout << "\n" << endl;
+}
 
 
 

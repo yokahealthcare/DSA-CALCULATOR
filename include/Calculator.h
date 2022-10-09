@@ -7,6 +7,7 @@
 #include <list>
 #include <cstring>
 #include <ctime>
+#include <cmath>
 using namespace std;
 
 class Calculator
@@ -18,6 +19,7 @@ class Calculator
         int step = 0;
 
         map<char, int> operators; // storing operators if and only if in the process of calculation
+        map<string, int> functions; // storing operators if and only if in the process of calculation
 
         vector<string> allowedOperators = {
             "+", "-", "*", "/",
@@ -44,10 +46,13 @@ class Calculator
         // Calculate
         void calculate();
         void apex(string, list<string>::iterator, list<string>::iterator, list<string>::iterator);
+        void advancedApex(string, list<string>::iterator);
 
         // OTHER
         void addOperators(char);
+        void addOperatorsString(string);
         void printOperators();
+        void printFunctions();
 
 };
 
