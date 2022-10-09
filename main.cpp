@@ -5,8 +5,7 @@
 #include "utility.h"
 using namespace std;
 
-int main()
-{
+int main() {
     Calculator cal;
     bool quit = 0;
     string menus[] =
@@ -19,8 +18,7 @@ int main()
     string input;
 
     // PROGRAM START HERE!
-    while(!quit)
-    {
+    while(!quit) {
         system("cls"); // clear the screen
         // Print the menus
         cout << "SCIENTIFIC CALCULATOR" << endl;
@@ -33,9 +31,7 @@ int main()
 
         // Check whether user inputted word or number
         if(isNumber(input)) {
-            if(input == "1")
-            {
-                // some functions
+            if(input == "1") {
                 bool quitCal = false;
                 while(!quitCal) {
                     // Print the banner
@@ -56,8 +52,6 @@ int main()
                         if(!isspace(val[i])) { // ignored
                             int ascii = val[i];
                             // check for operators
-                            // TODO : revised... so next it use array of operators. not like this
-                            //cout << "ASCII Index " << i << " : " << ascii << endl;
                             if(val[i] == '+' || val[i] == '-' || val[i] == '*' || val[i] == '/' || val[i] == '^') {
                                 tmp += val[i];
                                 cal.setComponents(tmp);
@@ -70,12 +64,9 @@ int main()
                                 tmp += val[i];
                                 int next = val[i+1];
                                 if ((next >= 97 && next <= 122) || (next == 40)) { // if next string is string, continue the loop to next loop immediately
-
                                     // FUNCTION FOR 'FUNCTIONS' DETECTION (ex. LOG, SIN, COS, etc)
                                     if(next == 40) {
                                         cal.addOperatorsString(tmp); // store the all functions to dictionary
-                                        cout << "OPEN BRACKET DETECTED!!" << endl;
-                                        cout << "TMP : " << tmp << endl;
 
                                         int indexBonus = 1;
                                         string currentCharacter;
@@ -96,19 +87,15 @@ int main()
                                                 existCloseBracket = true;
                                                 continue;
                                             }
-
                                             indexBonus++;
                                         }
-
                                         i += indexBonus;
                                     }
-                                }
-                                else {
+                                } else {
                                     cout << "\n\nERROR! Spaces are not allowed for functions calculation." << endl;
                                     cout << "Restart the program!\n\n" << endl;
                                     exit(0);
                                 }
-
                             } else {
                                 tmp += val[i];
                                 if (isdigit(val[i+1])) // if next string is integer, continue the loop to next loop immediately
@@ -121,12 +108,6 @@ int main()
                         }
                     }
 
-                    cal.printComponents();
-                    cal.printOperators();
-                    cal.printFunctions();
-
-                    // cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
-                    //cal.clearComponents(); // DEBUGGING PURPOSE CLEAR IT IF IT DONE!
                     // CALCULATION START HERE
                     cal.calculate();
 
@@ -142,10 +123,7 @@ int main()
                         quitCal = true;
 
                 }
-            }
-
-            else if(input == "2")
-            {
+            } else if(input == "2") {
                 bool quitStorage = false;
                 while(!quitStorage) {
                     // some functions
@@ -173,18 +151,11 @@ int main()
                         system("pause");
                     }
                 }
-            }
-
-            // exit
-            else if (input == "3")
-            {
+            } else if (input == "3") {
                 cout << "Bye Thank You!" << endl;
                 cout << "See You Next Time" << endl;
                 quit = true;
-            }
-
-            else
-            {
+            } else {
                 // If user entered more than size of menus
                 cout << "Invalid Input!" << endl;
                 cout << "Numbers allowed only from 1 to " << sizeOfMenus << endl;

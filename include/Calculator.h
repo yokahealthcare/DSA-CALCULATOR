@@ -21,14 +21,6 @@ class Calculator
         map<char, int> operators; // storing operators if and only if in the process of calculation
         map<string, int> functions; // storing operators if and only if in the process of calculation
 
-        vector<string> allowedOperators = {
-            "+", "-", "*", "/",
-            "sin", "cos", "tan", "asin", "acos", "atan",
-            "^", "sqrt", "log", "ln"
-        };
-
-
-
     public:
         Calculator();
 
@@ -46,7 +38,7 @@ class Calculator
         // Calculate
         void calculate();
         void apex(string, list<string>::iterator, list<string>::iterator, list<string>::iterator);
-        void advancedApex(string, list<string>::iterator);
+        void advancedApex(list<string>::iterator, vector<string>);
 
         // OTHER
         void addOperators(char);
