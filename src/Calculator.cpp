@@ -154,7 +154,20 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
     } else if(func == "exp") {
         result = to_string(pow(arguments[0], arguments[1]));
         opch = "exp";
+    } else if(func == "log"){
+        result = to_string(log(arguments[1])/log(arguments[0]));
+        opch = "log";
+    } else if(func == "ln"){
+        result = to_string(log(arguments[0]));
+        opch = "log";
+    } else if(func == "sqrt"){
+        result = to_string(sqrt(arguments[0]));
+        opch = "sqrt";
+    } else if(func == "cbrt"){
+        result = to_string(cbrt(arguments[0]));
+        opch = "cbrt";
     }
+
 
     /*
         ADD NEW FUNCTION HERE!!!

@@ -12,6 +12,7 @@ int main() {
     {
         "Calculator",
         "History",
+        "Guide",
         "Exit"
     };
     int sizeOfMenus = sizeof(menus)/sizeof(string);
@@ -139,6 +140,7 @@ int main() {
                     cin >> tmpInpt; cin.ignore();
                     if(tmpInpt == 1) {
                         cout << "Which one? " << endl;
+                        cout << ">>> ";
                         cin >> tmpInpt; cin.ignore();
 
                         cal.removeElementStorage(tmpInpt-1);
@@ -151,7 +153,20 @@ int main() {
                         system("pause");
                     }
                 }
-            } else if (input == "3") {
+            } else if (input== "3") {
+                cout << "\n====Function list====" << endl;
+                cout << "Trigonometry Functions" << endl;
+                cout << "Available functions: sin, cos, tan" << endl;
+                cout << "sin(a) written as sin(angle), angle in degrees" <<endl;
+                cout << "\nRoot Functions" << endl;
+                cout << "Available function: sqrt, cbrt" << endl;
+                cout << "sqrt(a) written as sqrt(value)\n" << endl;
+                cout << "Logarithm functions" << endl;
+                cout << "Available functions: log, ln" << endl;
+                cout << "alog b = c written as log(a,b)" << "\nln(a) written as ln(value)\n" << endl;
+                system("pause");
+
+            }else if (input == "4") {
                 cout << "Bye Thank You!" << endl;
                 cout << "See You Next Time" << endl;
                 quit = true;

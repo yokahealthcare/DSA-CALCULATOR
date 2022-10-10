@@ -27,3 +27,28 @@
 1664976246 source:c:\users\user\documents\sampoerna university\semester 3\data structure\dsa-calculator-midterm\src\utility.cpp
 	"utility.h"
 
+1665388913 source:c:\users\user\documents\github\dsa-calculator-midterm\main.cpp
+	<iostream>
+	<string>
+	<algorithm>
+	"Calculator.h"
+	"utility.h"
+
+1665383235 c:\users\user\documents\github\dsa-calculator-midterm\include\calculator.h
+	<iostream>
+	<vector>
+	<map>
+	<list>
+	<cstring>
+	<ctime>
+	<cmath>
+
+1665383235 c:\users\user\documents\github\dsa-calculator-midterm\include\utility.h
+	<iostream>
+
+1665385792 source:c:\users\user\documents\github\dsa-calculator-midterm\src\calculator.cpp
+	"Calculator.h"
+
+1665383236 source:c:\users\user\documents\github\dsa-calculator-midterm\src\utility.cpp
+	"utility.h"
+
