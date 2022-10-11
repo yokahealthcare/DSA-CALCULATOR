@@ -241,7 +241,7 @@ void Calculator::calculate() {
                 // If it detect a functions
                 isFunction = true;
                 break;
-            } else if(this->functions["sin"] == 0 && this->functions["cos"] == 0 && this->functions["tan"] == 0 && this->functions["exp"] == 0) {
+            } else if(this->functions["sin"] == 0 && this->functions["cos"] == 0 && this->functions["tan"] == 0 && this->functions["exp"] == 0 && this->functions["log"] == 0 && this->functions["ln"] == 0 && this->functions["sqrt"] == 0 && this->functions["cbrt"] == 0) {
                 if(*it == "*" || *it == "/" || *it == "+" || *it == "-" || *it == "^") {
                     // If it detect a operator
                     isOperator = true;
