@@ -157,13 +157,16 @@ int main() {
                 cout << "\n====Function list====" << endl;
                 cout << "Trigonometry Functions" << endl;
                 cout << "Available functions: sin, cos, tan" << endl;
-                cout << "sin(a) written as sin(angle), angle in degrees" <<endl;
+                cout << "Write sin(a) as sin(angle), angle in degrees" << endl;
+                cout << "\nTrigonometry Inverse Functions" <<endl;
+                cout << "Available functions: arcsin, arccos, arctan" << endl;
+                cout << "Write arcsin(a) as asin(angle), angle in degrees" <<endl;
                 cout << "\nRoot Functions" << endl;
                 cout << "Available function: sqrt, cbrt" << endl;
-                cout << "sqrt(a) written as sqrt(value)\n" << endl;
+                cout << "Write sqrt(a) as sqrt(value)\n" << endl;
                 cout << "Logarithm functions" << endl;
                 cout << "Available functions: log, ln" << endl;
-                cout << "alog b = c written as log(a,b)" << "\nln(a) written as ln(value)\n" << endl;
+                cout << "Write alog b = c as log(a,b)" << "\nWrite ln(a) as ln(value)\n" << endl;
                 system("pause");
 
             }else if (input == "4") {
