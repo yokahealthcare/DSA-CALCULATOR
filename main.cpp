@@ -164,6 +164,11 @@ int main() {
                 cout << "\nHyperbolic Functions" << endl;
                 cout << "Available hyperbolic functions: sinh, cosh, tanh" << endl;
                 cout << "Write sinh(a) as sinh(value)" << endl;
+
+                cout << "Available functions: arcsinh, arccosh, arctanh" << endl;
+                cout << "Write arcsinh(a) as asinh(angle), angle in degrees" <<endl;
+
+
                 cout << "\nRoot Functions" << endl;
                 cout << "Available function: sqrt, cbrt" << endl;
                 cout << "Write sqrt(a) as sqrt(value)\n" << endl;
