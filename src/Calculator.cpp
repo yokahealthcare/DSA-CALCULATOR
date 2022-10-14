@@ -179,6 +179,20 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
         result = to_string(atan(arguments[0]));
         opch = "atan";
     }
+    else if (func == "sinh"){
+        result = to_string(sinh(arguments[0]));
+        opch = "sinh";
+    }
+    else if (func == "cosh"){
+        result = to_string(cosh(arguments[0]));
+        opch = "cosh";
+    }
+    else if(func == "tanh"){
+        result = to_string(tanh(arguments[0]));
+        opch = "tanh";
+    }
+
+
 
 
 
@@ -255,7 +269,7 @@ void Calculator::calculate() {
                 // If it detect a functions
                 isFunction = true;
                 break;
-            } else if(this->functions["sin"] == 0 && this->functions["cos"] == 0 && this->functions["tan"] == 0 && this->functions["exp"] == 0 && this->functions["log"] == 0 && this->functions["ln"] == 0 && this->functions["sqrt"] == 0 && this->functions["cbrt"] == 0 && this->functions["asin"] == 0 && this->functions["acos"] == 0 && this->functions["atan"] == 0) {
+            } else if(this->functions["sin"] == 0 && this->functions["cos"] == 0 && this->functions["tan"] == 0 && this->functions["exp"] == 0 && this->functions["log"] == 0 && this->functions["ln"] == 0 && this->functions["sqrt"] == 0 && this->functions["cbrt"] == 0 && this->functions["asin"] == 0 && this->functions["acos"] == 0 && this->functions["atan"] == 0 && this->functions["sinh"] == 0 && this->functions["cosh"] == 0 && this->functions["tanh"] == 0) {
                 if(*it == "*" || *it == "/" || *it == "+" || *it == "-" || *it == "^") {
                     // If it detect a operator
                     isOperator = true;

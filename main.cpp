@@ -161,12 +161,16 @@ int main() {
                 cout << "\nTrigonometry Inverse Functions" <<endl;
                 cout << "Available functions: arcsin, arccos, arctan" << endl;
                 cout << "Write arcsin(a) as asin(angle), angle in degrees" <<endl;
+                cout << "\nHyperbolic Functions" << endl;
+                cout << "Available hyperbolic functions: sinh, cosh, tanh" << endl;
+                cout << "Write sinh(a) as sinh(value)" << endl;
                 cout << "\nRoot Functions" << endl;
                 cout << "Available function: sqrt, cbrt" << endl;
                 cout << "Write sqrt(a) as sqrt(value)\n" << endl;
                 cout << "Logarithm functions" << endl;
                 cout << "Available functions: log, ln" << endl;
                 cout << "Write alog b = c as log(a,b)" << "\nWrite ln(a) as ln(value)\n" << endl;
+
                 system("pause");
 
             }else if (input == "4") {

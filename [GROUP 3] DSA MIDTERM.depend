@@ -77,3 +77,28 @@
 	"Calculator.h"
 	"utility.h"
 
+1665743263 source:c:\users\msigf\documents\codes\dsa-calculator-midterm\main.cpp
+	<iostream>
+	<string>
+	<algorithm>
+	"Calculator.h"
+	"utility.h"
+
+1665740331 c:\users\msigf\documents\codes\dsa-calculator-midterm\include\calculator.h
+	<iostream>
+	<vector>
+	<map>
+	<list>
+	<cstring>
+	<ctime>
+	<cmath>
+
+1665740331 c:\users\msigf\documents\codes\dsa-calculator-midterm\include\utility.h
+	<iostream>
+
+1665740331 source:c:\users\msigf\documents\codes\dsa-calculator-midterm\src\utility.cpp
+	"utility.h"
+
+1665743711 source:c:\users\msigf\documents\codes\dsa-calculator-midterm\src\calculator.cpp
+	"Calculator.h"
+
