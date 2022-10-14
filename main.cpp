@@ -158,15 +158,17 @@ int main() {
                 cout << "Trigonometry Functions" << endl;
                 cout << "Available functions: sin, cos, tan" << endl;
                 cout << "Write sin(a) as sin(angle), angle in degrees" << endl;
+
                 cout << "\nTrigonometry Inverse Functions" <<endl;
                 cout << "Available functions: arcsin, arccos, arctan" << endl;
-                cout << "Write arcsin(a) as asin(angle), angle in degrees" <<endl;
+                cout << "Write arcsin(value) as asin(value), value in range of [-1, 1]" <<endl;
+
                 cout << "\nHyperbolic Functions" << endl;
                 cout << "Available hyperbolic functions: sinh, cosh, tanh" << endl;
-                cout << "Write sinh(a) as sinh(value)" << endl;
+                cout << "Write sinh(radians) as sinh(radians), angle in radians" << endl;
 
                 cout << "Available functions: arcsinh, arccosh, arctanh" << endl;
-                cout << "Write arcsinh(a) as asinh(angle), angle in degrees" <<endl;
+                cout << "Write arcsinh(value) as asinh(value), value is any value" <<endl;
 
 
                 cout << "\nRoot Functions" << endl;

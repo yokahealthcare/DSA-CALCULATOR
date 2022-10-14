@@ -150,6 +150,8 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
             result = to_string(cos(xrad)); opch = "cos";
         } else if(func == "tan") {
             result = to_string(tan(xrad)); opch = "tan";
+            if(result == "nan")
+                result = "0";
         }
     } else if(func == "exp") {
         result = to_string(pow(arguments[0], arguments[1]));
@@ -177,6 +179,8 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
     }
     else if (func == "atan"){
         result = to_string(atan(arguments[0]));
+        if(result == "nan")
+            result = "0";
         opch = "atan";
     }
     else if (func == "sinh"){
@@ -189,6 +193,8 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
     }
     else if(func == "tanh"){
         result = to_string(tanh(arguments[0]));
+        if(result == "nan")
+            result = "0";
         opch = "tanh";
     }
     else if(func == "asinh"){
@@ -201,16 +207,10 @@ void Calculator::advancedApex(list<string>::iterator it, vector<string> vect) {
     }
     else if(func == "atanh"){
         result = to_string(atanh(arguments[0]));
+        if(result == "nan")
+            result = "0";
         opch = "atanh";
     }
-
-
-
-
-
-
-
-
 
     /*
         ADD NEW FUNCTION HERE!!!
